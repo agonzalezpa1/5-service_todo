@@ -4,29 +4,50 @@ public class SeedData
     {
         using (var context = new TodoContext())
         {
-            // Look for existing content
             if (context.Todos.Any())
             {
                 return;   // DB already filled
             }
 
+            Todo todo1 = new Todo
+            {
+                Completed = true,
+                Task = "oui"
+            };
+            Todo todo2 = new Todo
+            {
+                Completed = false,
+                Task = "non"
+            };
+            Todo todo3 = new Todo
+            {
+                Completed = false,
+                Task = "peut-être",
+                Deadline = DateTime.Now // date d'aujourd'hui
+            };
+
             // Add Todos
             context.Todos.AddRange(
-                new Todo
+                todo1,
+                todo2,
+                todo3
+            );
+
+            if (context.Agendas.Any())
+            {
+                return;   // DB already filled
+            }
+
+            // Add Todos
+            context.Agendas.AddRange(
+                new Agenda
                 {
-                    Completed = true,
-                    Task = "oui"
+                    Name = "Chores",
+                    TodoList = { todo1, todo2}
                 },
-                new Todo
+                new Agenda
                 {
-                    Completed = false,
-                    Task = "non"
-                },
-                new Todo
-                {
-                    Completed = false,
-                    Task = "peut-être",
-                    Deadline = DateTime.Now // date d'aujourd'hui
+                    Name = "Holidays",
                 }
             );
 

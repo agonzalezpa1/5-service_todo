@@ -19,11 +19,11 @@
 // Fermer tout autre projet .NET ouvert en parallèle
 // Fermer et réouvrir VS Code
 // dotnet ef migrations add InitialCreate // au début dans fichier projet
-// dotnet ef migrations add "AddDeadline" // ensuite dans fichier projet
-// dotnet ef database update // à la fin pour créer le fichier de BDD dans fichier projet
+// dotnet ef migrations add "AddDeadline" // ensuite dans fichier projet pour toute mise à jour de la BDD en terme de Models (To undo this action, use 'ef migrations remove')
+// dotnet ef database update // à la fin pour créer le fichier de BDD dans fichier projet et pour appliquer les migrations des mises à jour
 // Ouvrir SQLite puis ouvrir le fichier de BDD crée à l'instant
 
 // Pour exécuter
 // 0- dotnet build // pour voir les erreurs
 // 1- dotnet run
-// 2- Aller sur http://localhost:5275/WeatherForecast
+// 2- Aller sur http://localhost:5275/swagger/index.html

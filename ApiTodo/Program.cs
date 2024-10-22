@@ -1,6 +1,7 @@
 // http://localhost:5275/swagger/index.html
 // dotnet run puis “Try it out” puis “Execute”
 
+SeedData.Init();
 
 var builder = WebApplication.CreateBuilder(args);
 

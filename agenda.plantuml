@@ -1,0 +1,12 @@
+' Alt+D pour avoir le retour direct sur VS Code
+' Sinon aller sur https://www.plantuml.com/plantuml/uml/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80
+' attention le serveur peut sauter si trop d'utilisateurs
+
+@startuml agenda
+
+class Classe {
+   int id
+   + allumer()
+}
+
+@enduml

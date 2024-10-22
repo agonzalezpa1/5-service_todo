@@ -17,9 +17,10 @@ public class TodoController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Todo>>> GetTodos()
     {
-    // Get items
-    var todos = _context.Todos;
-    return await todos.ToListAsync();
+        // Get items
+        var todos = _context.Todos;
+
+        return await todos.ToListAsync();
     }
 
     // GET: api/todo/2
