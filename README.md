@@ -3,10 +3,18 @@
 // Pour configurer
 // Installer extension C# 
 // Installer extension PDF
+
+--> Pour initier un nouveau projet de type API web dans un répertoire ApiUniversity existant
+git init
+dotnet new webapi -n ApiUniversity -o .
+dotnet new gitignore
+
+--> Pour les autres projets de BDD
 // dotnet tool install --global dotnet-ef // en amont dans fichier parent
 // dotnet new gitignore // en amont dans fichier parent
 // dotnet add package Microsoft.EntityFrameworkCore.Design // en amont dans fichier projet
 // dotnet add package Microsoft.EntityFrameworkCore.Sqlite // en amont dans fichier projet
+// dotnet add package Swashbuckle.AspNetCore.Annotations // pour les annotations dans la documentation de Swagger UI
 // Créer fichier Models (dans le répertoire que le fichier *.csproj) et mettre Todo.cs dedans codé comme indiqué
 // Coder tous les attributs de Todo en PUBLIC (e.g. 'public int Id {get; set;}')
 // Créer un répertoire Data dans le fichier projet
@@ -26,4 +34,4 @@
 // Pour exécuter
 // 0- dotnet build // pour voir les erreurs
 // 1- dotnet run
-// 2- Aller sur http://localhost:5275/swagger/index.html
+// 2- Aller sur http://localhost:5275/swagger/index.html (le numééro de port est indiqué après tous les dotnet run)

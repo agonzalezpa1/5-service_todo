@@ -6,4 +6,6 @@ public class Todo
     public DateTime? Deadline {get; set;}
     public int? AgendaID { get; set; } // Required foreign key property
     public Agenda Agenda { get; set; } = null!; // Required reference navigation to principal
+    public enum States {New, On_going, Completed};
+    public States State = States.New;
 }

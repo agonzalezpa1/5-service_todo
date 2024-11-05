@@ -18,6 +18,12 @@ builder.Services.AddSwaggerGen();
 // This will allow the application to interact with the database
 builder.Services.AddDbContext<TodoContext>();
 
+// Allows annotations on the Swagger UI documentation
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

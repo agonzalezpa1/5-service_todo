@@ -11,18 +11,17 @@ public class SeedData
 
             Todo todo1 = new Todo
             {
-                Completed = true,
-                Task = "oui"
+                Task = "oui",
+                State = Todo.States.Completed
             };
             Todo todo2 = new Todo
             {
-                Completed = false,
                 Task = "non"
             };
             Todo todo3 = new Todo
             {
-                Completed = false,
                 Task = "peut-être",
+                State = Todo.States.On_going,
                 Deadline = DateTime.Now // date d'aujourd'hui
             };
 

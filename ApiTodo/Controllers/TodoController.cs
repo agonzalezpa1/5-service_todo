@@ -1,7 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Swashbuckle.AspNetCore.Annotations; // Pour annotations sur Swagger UI
 
 [ApiController]
 [Route("api/todo")]
@@ -13,6 +13,16 @@ public class TodoController : ControllerBase
     _context = context;
     }
 
+    // Annotations sur Swagger UI
+    [SwaggerOperation
+        (
+            Summary = "Fetchs all the todos created"
+        )
+    ]
+    [SwaggerResponse(StatusCodes.Status200OK, "Todo(s) found", typeof(Todo))]
+    [SwaggerResponse(StatusCodes.Status404NotFound, "Todo list not found")]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, "Todo list retrieval error")]
+
     // GET: api/todo
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Todo>>> GetTodos()
@@ -23,9 +33,19 @@ public class TodoController : ControllerBase
         return await todos.ToListAsync();
     }
 
+    // Annotations sur Swagger UI
+    [SwaggerOperation
+        (
+            Summary = "Get a todo by id",
+            Description = "Returns a specific todo targeted by its identifier"
+        )
+    ]
+    [SwaggerResponse(StatusCodes.Status200OK, "Todo found", typeof(Todo))]
+    [SwaggerResponse(StatusCodes.Status404NotFound, "Todo not found")]
+
     // GET: api/todo/2
     [HttpGet("{id}")]
-    public async Task<ActionResult<Todo>> GetItem(int id)
+    public async Task<ActionResult<Todo>> GetItem([SwaggerParameter("The unique identifier of the item", Required = true)] int id)
     {
         // Find a specific item
         // SingleAsync() throws an exception if no item is found (which is possible, depending on id)
@@ -38,6 +58,15 @@ public class TodoController : ControllerBase
         return todo;
     }
 
+    // Annotations sur Swagger UI
+    [SwaggerOperation
+        (
+            Summary = "Creates a todo"
+        )
+    ]
+    [SwaggerResponse(StatusCodes.Status200OK, "Todo created", typeof(Todo))]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, "Todo creation error")]
+
     // POST: api/item
     [HttpPost]
     public async Task<ActionResult<Todo>> PostItem(Todo todo)
@@ -47,6 +76,18 @@ public class TodoController : ControllerBase
 
         return CreatedAtAction(nameof(GetItem), new { id = todo.Id }, todo);
     }
+
+    // Annotations sur Swagger UI
+    [SwaggerOperation
+        (
+            Summary = "Update a todo by id",
+            Description = "Modifies a specific todo targeted by its identifier"
+        )
+    ]
+    [SwaggerResponse(StatusCodes.Status200OK, "Todo updated", typeof(Todo))]
+    [SwaggerResponse(StatusCodes.Status404NotFound, "Todo not found")]
+    [SwaggerResponse(StatusCodes.Status400BadRequest, "Untreatable request")]
+    [SwaggerResponse(StatusCodes.Status204NoContent, "Empty todo list")]
 
     // PUT: api/item/2 => mise à jour d'un Todo
     [HttpPut("{id}")]
@@ -73,6 +114,17 @@ public class TodoController : ControllerBase
 
         return NoContent();
     }
+
+    // Annotations sur Swagger UI
+    [SwaggerOperation
+        (
+            Summary = "Delete a todo by id",
+            Description = "Deletes a specific todo targeted by its identifier"
+        )
+    ]
+    [SwaggerResponse(StatusCodes.Status200OK, "Todo deleted", typeof(Todo))]
+    [SwaggerResponse(StatusCodes.Status404NotFound, "Todo not found")]
+    [SwaggerResponse(StatusCodes.Status204NoContent, "Empty todo list")]
     
     // DELETE: api/item/2
     [HttpDelete("{id}")]
@@ -91,4 +143,3 @@ public class TodoController : ControllerBase
         return NoContent();
     }
 }
-
